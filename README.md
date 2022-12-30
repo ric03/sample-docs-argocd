@@ -4,6 +4,10 @@ This repo contains the application/-set objects for ArgoCD.
 
 # Component Overview
 
+- The app: https://github.com/ric03/sample-docs-app
+- The k8s config: https://github.com/ric03/sample-docs-deployment
+- The ArgoCD config: https://github.com/ric03/sample-docs-argocd (this repo)
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/component-overview-transparent-darkmode.png">
   <img alt="Component Overview" src="docs/component-overview-transparent.png">
