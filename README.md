@@ -2,6 +2,13 @@
 
 This repo contains the application/-set objects for ArgoCD.
 
+# Component Overview
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/component-overview-transparent-darkmode.png">
+  <img alt="Component Overview" src="docs/component-overview-transparent.png">
+</picture>
+
 # Usage
 
 Make sure that you are logged in. `argocd login localhost:8080`
