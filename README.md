@@ -13,6 +13,8 @@ argocd app create -f sample-docs-app.yaml
 argocd app get sample-docs-app
 ```
 
+![](docs/screenshot-argocd-ui-sample-docs-app.png "Screenshot ArgoCD UI of sample-docs-app")
+
 # Setting up a local Kubernetes and ArgoCD
 
 # CLI tools
