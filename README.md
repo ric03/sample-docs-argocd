@@ -9,8 +9,8 @@ This repo contains the application/-set objects for ArgoCD.
 - The ArgoCD config: https://github.com/ric03/sample-docs-argocd (this repo)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/component-overview-transparent-darkmode.png">
-  <img alt="Component Overview" src="docs/component-overview-transparent.png">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/component-overview-transparent-darkmode.png">
+  <img alt="Component Overview" src="./docs/component-overview-transparent.png">
 </picture>
 
 # Usage
