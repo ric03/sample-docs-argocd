@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  # Name of the ArgoCD-App
+  name: sample-docs-app
+  # Namespace of the ArgoCD project (not the actual app)
+  namespace: argocd
+spec:
+  destination:
+    # Namespace in which the app will be deployed
+    namespace: playground
+    server: https://kubernetes.default.svc
+  # The associated ArgoCD Project
+  project: default
+  source:
+    helm:
+      valueFiles:
+        - values.yaml
+    path: .
+    repoURL: https://github.com/ric03/sample-docs-deployment
+    targetRevision: HEAD
+  syncPolicy:
+    automated: { }
