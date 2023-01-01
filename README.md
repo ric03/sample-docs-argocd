@@ -20,7 +20,7 @@ Make sure that you are logged in. `argocd login localhost:8080`
 Create a new Application using a yaml file.
 
 ```shell
-argocd app create -f sample-docs-app.yaml
+argocd app create -f sample-docs.app.yaml
 argocd app get sample-docs-app
 ```
 
