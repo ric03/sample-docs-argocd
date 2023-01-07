@@ -1,28 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: namespace-setup
+  name: namespace-setup-by-argocd
   namespace: argocd
 spec:
   generators:
     - list:
         elements:
           - name: dev
-            namespace: ns-dev
+            namespace: ns-by-argocd-dev
             overlayPath: dev
           - name: uat
-            namespace: ns-uat
+            namespace: ns-by-argocd-uat
             overlayPath: uat
   template:
     metadata:
-      name: 'sample-docs-ns-setup-{{name}}'
+      name: 'sample-docs-ns-setup-by-argocd-{{name}}'
     spec:
       syncPolicy:
         automated: { }
         syncOptions:
           - CreateNamespace=true
       # the next release/2.6 add the option to add labels and annotation
-      # the release/2.6 is planned for 2023-01-09
+      # the release/2.6 is planned for 2023-02-06
       #        managedNamespaceMetadata:
       #          labels:
       #            istio-injection: enabled
@@ -34,7 +34,7 @@ spec:
       source:
         repoURL: https://github.com/ric03/sample-docs-namespace-setup
         targetRevision: HEAD
-        path: overlays/{{overlayPath}}
+        path: namespace-setup-by-argocd/overlays/{{overlayPath}}
         kustomize: { }
       destination:
         server: 'https://kubernetes.default.svc'
