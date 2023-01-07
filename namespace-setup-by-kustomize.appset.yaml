@@ -27,4 +27,3 @@ spec:
         kustomize: { }
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{{ namespace }}'
