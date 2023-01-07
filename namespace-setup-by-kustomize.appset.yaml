@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: namespace-setup-by-kustomize
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: dev
+            overlayPath: dev
+          - name: uat
+            overlayPath: uat
+  template:
+    metadata:
+      name: 'sample-docs-ns-setup-by-kustomize-{{name}}'
+    spec:
+      syncPolicy:
+        automated: { }
+        syncOptions:
+          - CreateNamespace=true
+      project: "default"
+      source:
+        repoURL: https://github.com/ric03/sample-docs-namespace-setup
+        targetRevision: HEAD
+        path: namespace-setup-by-kustomize/overlays/{{overlayPath}}
+        kustomize: { }
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{ namespace }}'
