@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: multi-branch
+spec:
+  generators:
+    - scmProvider:
+        github:
+          # The GitHub organization to scan.
+          organization: functionalfriday
+          # If true, scan every branch of every repository. If false, scan only the default branch. Defaults to false.
+          allBranches: true
+          tokenRef:
+            secretName: github-token
+            key: token
+          # (optional) use a GitHub App to access the API instead of a PAT.
+          #   appSecretName: gh-app-repo-creds
+        filters:
+          - repositoryMatch: ^argocd-scmprovider-spike$
+            # Reference to a Secret containing an access token. (optional)
+  template:
+    metadata:
+      name: multi-branch-{{ branchNormalized }}
+    spec:
+      syncPolicy:
+        automated: { }
+        syncOptions:
+          - CreateNamespace=true
+      project: "default"
+      source:
+        repoURL: https://github.com/ric03/sample-docs-namespace-setup
+        targetRevision: HEAD
+        path: namespace-setup-by-argocd/overlays/dev
+        kustomize: { }
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: multi-branch-{{ branchNormalized }}

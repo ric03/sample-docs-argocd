@@ -125,3 +125,35 @@ Apply changes and sync with repo
 ```
 argocd app sync guestbook
 ```
+
+# Multi Branch Deployment Using the ScmProvider
+
+**Requirements**
+
+- GitHub Organization (eg. [functionalfriday](https://github.com/functionalfriday))
+- Personal Access Token (PAT)
+    - otherwise the public rate-limit will block the requests
+    - https://github.com/settings/personal-access-tokens/new
+
+Add the token as a secret to the ArgoCD namespace:
+
+```shell
+kubectl -n argocd create secret generic github-token --from-literal=token=<insert_your_token_here>
+```
+
+Deploy the `multi-branch` appset:
+
+```
+argocd appset create multi-branch.appset.yaml
+```
+
+Check the status of the `multi-branch` appset:
+
+```
+argocd appset get multi-branch
+```
+
+Here you can see it in Action, the ApplicationSet generates one Application for each branch.
+
+![screenshot-argocd-ui-multi-branch-appset.png](docs%2Fscreenshot-argocd-ui-multi-branch-appset.png)
+![screenshot-github-branch-overview-of-argocd-scmprovider.png](docs%2Fscreenshot-github-branch-overview-of-argocd-scmprovider.png)
